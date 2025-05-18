@@ -1,0 +1,30 @@
+{
+    "manifest_version": 3,
+    "name": "AtCoder Auto Favorite",
+    "version": "1.0",
+    "description": "指定したAtCoderユーザーを自動でお気に入り登録します。",
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": [
+        "tabs",
+        "scripting"
+    ],
+    "host_permissions": [
+        "https://atcoder.jp/users/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://atcoder.jp/users/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ]
+}

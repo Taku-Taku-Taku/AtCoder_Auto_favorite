@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AtCoder Auto Favorite</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 300px;
+            padding: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 10px;
+            width: 100%;
+            padding: 10px;
+        }
+
+        #result {
+            margin-top: 10px;
+            color: green;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>お気に入り自動登録</h3>
+    <p>ユーザIDを改行で複数入力してください。</p>
+    <textarea id="usernames" placeholder="user1&#10;user2&#10;user3"></textarea>
+    <button id="registerBtn">登録開始</button>
+    <div id="result"></div>
+    <script src="popup.js"></script>
+</body>
+
+</html>
