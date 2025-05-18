@@ -1,5 +1,15 @@
-(function () {
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.type !== "run-favorite") return;
+
     console.log("AtCoder Auto Favorite: content.js 実行開始");
+
+    // 対象ユーザー名と一致するURLか確認
+    const currentPath = window.location.pathname;
+    const expectedPath = `/users/${message.username}`;
+    if (currentPath !== expectedPath) {
+        console.warn(`対象ユーザーと一致しません: 現在=${currentPath}, 指定=${expectedPath}`);
+        return;
+    }
 
     // ユーザーが存在しない場合
     const noUser = document.querySelector('.alert.alert-danger');
@@ -8,10 +18,8 @@
         return;
     }
 
-    // 未登録状態（unfav.png = 登録前）を探してクリック
+    // 登録前・登録済みのアイコンをそれぞれ取得
     const unfavIcon = document.querySelector('img.fav-btn[src$="unfav.png"]');
-
-    // すでにお気に入り登録済みの場合（fav.png = 登録済み）
     const favIcon = document.querySelector('img.fav-btn[src$="fav.png"]');
 
     if (unfavIcon) {
@@ -19,8 +27,7 @@
         unfavIcon.click();
     } else if (favIcon) {
         console.log("このユーザーはすでにお気に入りに登録されています。クリックは不要です。");
-        return;
     } else {
         console.log("お気に入りボタンが見つかりませんでした。");
     }
-})();
+});

@@ -1,5 +1,6 @@
 document.getElementById("registerBtn").addEventListener("click", () => {
     const input = document.getElementById("usernames").value;
+    const result = document.getElementById("result");
 
     const usernames = input
         .split(/\r?\n/)
@@ -7,10 +8,19 @@ document.getElementById("registerBtn").addEventListener("click", () => {
         .filter(s => s.length > 0);
 
     if (usernames.length === 0) {
-        alert("ユーザIDを入力してください。");
+        result.textContent = "ユーザIDを入力してください。";
         return;
     }
 
-    chrome.runtime.sendMessage({ type: "start-favorite", usernames });
-    window.close(); // ポップアップを閉じても処理が続く
+    const delayMs = 3000;
+
+    result.textContent = `${usernames.length}人分の処理を順番に開始します...`;
+
+    chrome.runtime.sendMessage({
+        type: "start-favorite",
+        usernames,
+        delayMs
+    });
+
+    window.close();
 });

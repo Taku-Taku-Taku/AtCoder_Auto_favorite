@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "AtCoder Auto Favorite",
-    "version": "1.0",
+    "version": "1.0.1",
     "description": "指定したAtCoderユーザーを自動でお気に入り登録します。",
     "action": {
         "default_popup": "popup.html"
